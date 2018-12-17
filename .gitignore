@@ -71,4 +71,4 @@ package-lock.json
 RNTester/build
 
 # Expo
-.expo
+.expo/

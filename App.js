@@ -1,5 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as firebase from 'firebase';
+
+import firebaseConfig from './src/config/firebase';
+
+firebase.initializeApp(firebaseConfig);
 
 const styles = StyleSheet.create({
   container: {
