@@ -1,24 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import * as firebase from 'firebase';
+import { Provider } from 'react-redux';
+import store from './src/redux/configureStore';
+import AppContainer from './src/containers/AppContainer';
+// import * as firebase from 'firebase';
+// import firebaseConfig from './src/config/firebase';
 
-import firebaseConfig from './src/config/firebase';
-
-firebase.initializeApp(firebaseConfig);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// firebase.initializeApp(firebaseConfig);
 
 const App = () => (
-  <View style={styles.container}>
-    <Text>Open up App.js to start working on your app!</Text>
-  </View>
+  <Provider store={store}>
+    <AppContainer />
+  </Provider>
 );
 
 export default App;
