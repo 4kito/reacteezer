@@ -1,17 +1,18 @@
-import { ADD_ARTICLE } from '../../config/action-types';
+import { LOGIN } from '../../config/action-types';
 
-const initialState = {
-  articles: []
+const initialStore = {
+  auth: {
+    isLogged: false
+  }
 };
 
-function rootReducer(state = initialState, action) {
-  if (action.type === ADD_ARTICLE) {
-    if (state.articles.findIndex(article => article.id === action.payload.id) === -1) {
-      return Object.assign({}, state, {
-        articles: state.articles.concat(action.payload)
-      });
-    }
+function authReducer(state = initialStore.auth, action) {
+  if (action.type === LOGIN) {
+    return Object.assign(state, {
+      isLogged: action.payload.isLogged
+    });
   }
   return state;
 }
-export default rootReducer;
+
+export default authReducer;
