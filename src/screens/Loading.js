@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import * as firebase from 'firebase';
 import { connect } from 'react-redux';
@@ -12,8 +12,9 @@ const mapDispatchToProps = dispatch => ({
 
 class Loading extends React.Component {
   componentDidMount() {
+    const { navigation } = this.props;
     firebase.auth().onAuthStateChanged(user => {
-      const { dispatchLogin, navigation } = this.props;
+      const { dispatchLogin } = this.props;
       dispatchLogin(user);
       navigation.navigate(user ? 'Home' : 'Login');
     });
@@ -21,8 +22,7 @@ class Loading extends React.Component {
 
   render() {
     return (
-      <View style={Styles}>
-        <Text>Loading</Text>
+      <View style={Styles.container}>
         <ActivityIndicator size="large" />
       </View>
     );
