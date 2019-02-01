@@ -2,9 +2,9 @@ import React from 'react';
 import { Text, View, Button } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as firebase from 'firebase';
 import Styles from '../utils/Styles';
 import { logOut } from '../redux/actions/index';
-import * as firebase from 'firebase';
 
 const mapDispatchToProps = dispatch => ({
   dispatchLogout: () => dispatch(logOut())
@@ -36,7 +36,8 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired
+  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired,
+  dispatchLogout: PropTypes.func.isRequired
 };
 
 export default connect(

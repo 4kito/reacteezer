@@ -1,10 +1,11 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 import Loading from './screens/Loading';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import Drawer from './components/Drawer';
 
-const AppNavigator = createSwitchNavigator(
+const AuthNavigator = createSwitchNavigator(
   {
     Loading,
     SignUp,
@@ -12,7 +13,25 @@ const AppNavigator = createSwitchNavigator(
     Home
   },
   {
-    initialRouteName: 'Loading'
+    initialRoute: 'Loading',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#f4511e'
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
+    }
+  }
+);
+
+const AppNavigator = createDrawerNavigator(
+  {
+    Home: AuthNavigator
+  },
+  {
+    contentComponent: Drawer
   }
 );
 
