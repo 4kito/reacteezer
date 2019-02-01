@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
+import Logout from './Logout';
 
 const iconFile = require('../assets/icon.png');
 
@@ -34,6 +35,7 @@ const Drawer = () => (
         }}
       />
     </TouchableOpacity>
+    <Logout />
   </View>
 );
 
