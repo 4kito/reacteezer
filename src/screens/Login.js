@@ -50,7 +50,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired,
+  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired
 };
 
 export default Login;

@@ -1,18 +1,16 @@
-import { LOGIN } from '../../config/action-types';
+import { LOGIN, LOGOUT } from '../../config/action-types';
 
-const initialStore = {
-  auth: {
-    isLogged: false
-  }
-};
+const initialState = null;
 
-function authReducer(state = initialStore.auth, action) {
-  if (action.type === LOGIN) {
-    return Object.assign(state, {
-      isLogged: action.payload.isLogged
-    });
+function authReducer(state = initialState, action) {
+  switch (action.type) {
+    case LOGIN:
+      return { ...state, ...action.payload };
+    case LOGOUT:
+      return null;
+    default:
+      return state;
   }
-  return state;
 }
 
 export default authReducer;

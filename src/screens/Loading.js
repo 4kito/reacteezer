@@ -7,14 +7,14 @@ import Styles from '../utils/Styles';
 import { logIn } from '../redux/actions/index';
 
 const mapDispatchToProps = dispatch => ({
-  dispatchLogin: isLogged => dispatch(logIn({ isLogged }))
+  dispatchLogin: user => dispatch(logIn(user))
 });
 
 class Loading extends React.Component {
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       const { dispatchLogin, navigation } = this.props;
-      dispatchLogin(true);
+      dispatchLogin(user);
       navigation.navigate(user ? 'Home' : 'Login');
     });
   }
