@@ -19,6 +19,7 @@ class Drawer extends React.Component {
 
   render() {
     const { hasCameraPermission } = this.state;
+    // eslint-disable-next-line react/prop-types
     const { navigation, currentUser } = this.props;
     if (hasCameraPermission === null) {
       return <View />;

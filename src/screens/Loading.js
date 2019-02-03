@@ -12,6 +12,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Loading extends React.Component {
   componentDidMount() {
+    // eslint-disable-next-line no-console
     console.disableYellowBox = true;
     const { navigation } = this.props;
     firebase.auth().onAuthStateChanged(user => {
