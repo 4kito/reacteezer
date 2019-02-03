@@ -3,6 +3,7 @@ import Loading from './screens/Loading';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
 import Home from './screens/Home';
+import Camera from './screens/Camera';
 import Drawer from './components/Drawer';
 
 const AuthNavigator = createSwitchNavigator(
@@ -10,7 +11,8 @@ const AuthNavigator = createSwitchNavigator(
     Loading,
     SignUp,
     Login,
-    Home
+    Home,
+    Camera
   },
   {
     initialRoute: 'Loading',

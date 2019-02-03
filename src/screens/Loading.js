@@ -12,6 +12,7 @@ const mapDispatchToProps = dispatch => ({
 
 class Loading extends React.Component {
   componentDidMount() {
+    console.disableYellowBox = true;
     const { navigation } = this.props;
     firebase.auth().onAuthStateChanged(user => {
       const { dispatchLogin } = this.props;
