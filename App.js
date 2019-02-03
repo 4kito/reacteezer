@@ -1,15 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import * as firebase from 'firebase';
 import store from './src/redux/configureStore';
-import AppContainer from './src/containers/AppContainer';
-// import * as firebase from 'firebase';
-// import firebaseConfig from './src/config/firebase';
+import Routes from './src/Routes';
+import firebaseConfig from './src/config/firebase';
 
-// firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 const App = () => (
   <Provider store={store}>
-    <AppContainer />
+    <Routes />
   </Provider>
 );
 

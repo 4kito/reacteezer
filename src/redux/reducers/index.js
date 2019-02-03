@@ -1,17 +1,18 @@
-import { ADD_ARTICLE } from '../../config/action-types';
+import { LOGIN, LOGOUT, UPDATE_PROFILE } from '../../config/action-types';
 
-const initialState = {
-  articles: []
-};
+const initialState = null;
 
-function rootReducer(state = initialState, action) {
-  if (action.type === ADD_ARTICLE) {
-    if (state.articles.findIndex(article => article.id === action.payload.id) === -1) {
-      return Object.assign({}, state, {
-        articles: state.articles.concat(action.payload)
-      });
-    }
+function authReducer(state = initialState, action) {
+  switch (action.type) {
+    case LOGIN:
+      return { ...state, ...action.payload };
+    case LOGOUT:
+      return null;
+    case UPDATE_PROFILE:
+      return { ...state, ...action.payload };
+    default:
+      return state;
   }
-  return state;
 }
-export default rootReducer;
+
+export default authReducer;
