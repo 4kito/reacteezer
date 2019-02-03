@@ -1,14 +1,20 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Styles from '../utils/Styles';
+import Playlists from '../components/Playlists';
 
-const Home = currentUser => ({
+const mapStateToProps = state => ({
+  currentUser: state.user,
+  playlists: state.playlists
+});
+
+const Home = (currentUser, playlists, navigation) => ({
   render() {
-    if (currentUser.currentUser) {
+    if (currentUser && playlists) {
       return (
         <View style={Styles}>
-          <Text>{`Hi ${currentUser.currentUser.email}`}</Text>
+          <Playlists navigation={navigation} />
         </View>
       );
     }
@@ -16,4 +22,4 @@ const Home = currentUser => ({
   }
 });
 
-export default connect(state => ({ currentUser: state }))(Home);
+export default connect(mapStateToProps)(Home);
