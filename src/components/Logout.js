@@ -16,7 +16,7 @@ class Logout extends React.Component {
       await firebase.auth().signOut();
       dispatchLogout();
     } catch (e) {
-      // console.log(e);
+      console.log(e);
     }
   };
 
