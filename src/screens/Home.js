@@ -5,10 +5,10 @@ import Styles from '../utils/Styles';
 
 const Home = currentUser => ({
   render() {
-    if (currentUser) {
+    if (currentUser.currentUser) {
       return (
         <View style={Styles}>
-          <Text>{`Hi ${currentUser.email}`}</Text>
+          <Text>{`Hi ${currentUser.currentUser.email}`}</Text>
         </View>
       );
     }
