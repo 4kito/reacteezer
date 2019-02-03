@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import {
   ActivityIndicator,
@@ -102,7 +103,6 @@ class Camera extends React.Component {
 
   handleImagePicked = async pickerResult => {
     const { navigation } = this.props;
-    let uploadResult;
     let uploadResponse;
     try {
       this.setState({
@@ -118,9 +118,6 @@ class Camera extends React.Component {
         navigation.navigate('Home');
       }
     } catch (e) {
-//      console.log({ uploadResponse });
-//      console.log({ uploadResult });
-//      console.log({ e });
       alert('Upload failed, sorry :(');
     }
   };
@@ -146,11 +143,10 @@ class Camera extends React.Component {
 async function uploadImageAsync(uri) {
   const blob = await new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.onload = function() {
+    xhr.onload = function onload() {
       resolve(xhr.response);
     };
-    xhr.onerror = function(e) {
-      // console.log(e);
+    xhr.onerror = function onerror(e) {
       reject(new TypeError('Network request failed'));
     };
     xhr.responseType = 'blob';
