@@ -27,47 +27,49 @@ class Loading extends React.Component {
     });
   }
 
-  getPlaylists = async currentUser => {
+  getPlaylists = currentUser => {
     const { dispatchAddPlaylist, navigation } = this.props;
     let arrItems = [];
     const db = firebase.firestore();
     const playlists = db.collection('playlists');
     // eslint-disable-next-line no-unused-vars
-    const query = playlists
-      .where('user', '==', currentUser.uid)
-      .get()
-      .then(snapshot => {
-        if (snapshot.empty) {
-          return;
-        }
-        snapshot.forEach(doc => {
-          db.collection(`playlists/${doc.id}/tracks`)
-            .get()
-            .then(subCollectionSnapshot => {
-              arrItems = [];
-              subCollectionSnapshot.forEach(subDoc => {
+    if (currentUser) {
+      const query = playlists
+        .where('user', '==', currentUser.uid)
+        .get()
+        .then(snapshot => {
+          if (snapshot.empty) {
+            return;
+          }
+          snapshot.forEach(doc => {
+            db.collection(`playlists/${doc.id}/tracks`)
+              .get()
+              .then(subCollectionSnapshot => {
+                arrItems = [];
+                subCollectionSnapshot.forEach(subDoc => {
+                  const item = {
+                    uid: subDoc.id,
+                    title: subDoc.data().title,
+                    album: subDoc.data().album,
+                    artist: { name: subDoc.data().artist.name }
+                  };
+                  arrItems.push(item);
+                });
                 const item = {
-                  uid: subDoc.id,
-                  title: subDoc.data().title,
-                  album: subDoc.data().album,
-                  artist: { name: subDoc.data().artist.name }
+                  uid: doc.id,
+                  title: doc.data().title,
+                  tracks: arrItems
                 };
-                arrItems.push(item);
+                dispatchAddPlaylist(item);
+                navigation.navigate('Home', { navigation });
               });
-              const item = {
-                uid: doc.id,
-                title: doc.data().title,
-                tracks: arrItems
-              };
-              dispatchAddPlaylist(item);
-              navigation.navigate('Home');
-            });
+          });
+        })
+        .catch(err => {
+          // eslint-disable-next-line no-console
+          console.log('Error getting documents', err);
         });
-      })
-      .catch(err => {
-        // eslint-disable-next-line no-console
-        console.log('Error getting documents', err);
-      });
+    }
   };
 
   render() {

@@ -12,11 +12,7 @@ const mapStateToProps = state => ({
 const Home = (currentUser, playlists, navigation) => ({
   render() {
     if (currentUser && playlists) {
-      return (
-        <View style={Styles}>
-          <Playlists navigation={navigation} />
-        </View>
-      );
+      return <Playlists navigation={navigation} />;
     }
     return null;
   }

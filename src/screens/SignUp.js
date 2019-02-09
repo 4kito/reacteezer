@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Text, View, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 import * as firebase from 'firebase';
 import Styles from '../utils/Styles';
 
@@ -8,10 +9,12 @@ class SignUp extends React.Component {
 
   handleSignUp = () => {
     const { email, password } = this.state;
+    const { navigation } = this.props;
 
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(navigation.navigate('Home', { navigation }))
       .catch(error => this.setState({ errorMessage: error.message }));
   };
 
@@ -42,5 +45,9 @@ class SignUp extends React.Component {
     );
   }
 }
+
+SignUp.propTypes = {
+  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired }).isRequired
+};
 
 export default SignUp;

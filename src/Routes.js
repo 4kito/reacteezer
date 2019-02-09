@@ -1,4 +1,4 @@
-import { createSwitchNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createAppContainer } from 'react-navigation';
 import Loading from './screens/Loading';
 import SignUp from './screens/SignUp';
 import Login from './screens/Login';
@@ -6,7 +6,7 @@ import Home from './screens/Home';
 import Camera from './screens/Camera';
 import Drawer from './components/Drawer';
 
-const AuthNavigator = createSwitchNavigator(
+const AuthNavigator = createStackNavigator(
   {
     Loading,
     SignUp,

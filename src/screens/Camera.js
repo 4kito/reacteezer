@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { ImagePicker, Permissions } from 'expo';
 import firebase from 'firebase';
 
@@ -163,6 +164,12 @@ async function uploadImageAsync(uri) {
 
   return snapshot.ref.getDownloadURL();
 }
+
+Camera.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired
+  }).isRequired
+};
 
 const styles = StyleSheet.create({
   container: {

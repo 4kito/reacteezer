@@ -53,7 +53,7 @@ class Playlists extends React.Component {
           title: text
         };
         dispatchAddPlaylist(item);
-        navigation.navigate('Home', { reloaded: true });
+        navigation.navigate('Home', { navigation, reloaded: true });
         this.toggleModal();
         console.log('Document successfully written!');
       })
@@ -75,7 +75,7 @@ class Playlists extends React.Component {
       .delete()
       .then(() => {
         dispatchRemovePlaylist(uid);
-        navigation.navigate('Home', { reloaded: true });
+        navigation.navigate('Home', { navigation, reloaded: true });
         console.log('Document successfully deleted!');
       })
       .catch(error => {
@@ -92,9 +92,7 @@ class Playlists extends React.Component {
           <FlatList
             data={playlists}
             onPress={item => {
-              navigation.navigate('Tracks', {
-                uid: item.uid
-              });
+              navigation.navigate('Home');
             }}
             onLongPress={uid => this.onLongPress(uid)}
           />
@@ -122,7 +120,7 @@ class Playlists extends React.Component {
       );
     }
     return (
-      <View style={{ marginTop: 22, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ marginTop: 22, justifyContent: 'center' }}>
         <Text>Aucune playlist trouvé !</Text>
         <Text>Ajouter une nouvelle playlist</Text>
         <Input

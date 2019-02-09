@@ -16,6 +16,7 @@ class Logout extends React.Component {
       await firebase.auth().signOut();
       dispatchLogout();
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
